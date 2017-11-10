@@ -109,7 +109,7 @@ class Particule_Filter:
             # current_weight = self.weightingParticuleBinary(self.particule_list[i].x, self.FIXED_PLANE_Y+50,
             #                                          observed_distance)
             # current_weight = self.weightingParticuleExp(self.particule_list[i].x, self.FIXED_PLANE_Y+50,
-                                                     observed_distance)
+            #                                         observed_distance)
             self.particule_list[i].w = current_weight
             sum_weights += current_weight
         for i in range(len(self.particule_list)):
