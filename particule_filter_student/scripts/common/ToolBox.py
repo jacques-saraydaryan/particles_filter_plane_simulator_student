@@ -1,6 +1,6 @@
-import pandas as pd
-import scipy as sc
-import scipy.stats
+#import pandas as pd
+#import scipy as sc
+#import scipy.stats
 import numpy as np
 
 def distance_to_obstacle(x,y,grid,width,height,scale):
@@ -45,16 +45,16 @@ def update_coord_according_scale(x,y,scale):
 
 
 # Input a pandas series 
-def entropy(particuleslist):
-    index=[]
-    serie_part=[]
-    for i in range(0,len(particuleslist)):
-        serie_part.append(round(particuleslist[i].x/10,1))
-        index.append(i)
-    p_particules=pd.Series(serie_part,index=index)
-    p_particules= p_particules.value_counts()/len(particuleslist) # calculates the probabilities
-    entropy=sc.stats.entropy(p_particules)  # input probabilities to get the entropy 
-    return entropy
+#def entropy(particuleslist):
+#    index=[]
+#    serie_part=[]
+#    for i in range(0,len(particuleslist)):
+#        serie_part.append(round(particuleslist[i].x/10,1))
+#        index.append(i)
+#    p_particules=pd.Series(serie_part,index=index)
+#   p_particules= p_particules.value_counts()/len(particuleslist) # calculates the probabilities
+#    entropy=sc.stats.entropy(p_particules)  # input probabilities to get the entropy 
+#    return entropy
 
 
     # Input a pandas series 
