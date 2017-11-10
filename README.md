@@ -15,6 +15,18 @@ cd scripts
 
 ```
 
+## Simulator command
+* **Space bar**: pause resume the simulator
+* **Left click**: Add an obstacle to the environment
+* **Right click**: Remove an obstacle to the environment
+* **S key**: Save the current environment (obstacles) into '\tmp\obstacles.py'
+* **R key**: Reset Plane position and particules filter
+* **+ key**: Speed up the plane
+* **- key**: Slow down the plane
+
+
+
+
 ## The job to do
 Update the file Particule_Filter.py to:
 
