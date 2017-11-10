@@ -102,7 +102,7 @@ def motion_prediction(self):
         return new_particule_list
 ```
 
-## Example of result
+## Example of result (video)
 
 [![Alt text](https://img.youtube.com/vi/3IBemFtwZ8g/0.jpg)](https://www.youtube.com/watch?v=3IBemFtwZ8g)
 
