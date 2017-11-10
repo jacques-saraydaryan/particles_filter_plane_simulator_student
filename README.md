@@ -31,9 +31,35 @@ cd scripts
 Update the file Particule_Filter.py to:
 
 1. Weight the particules
-
+```
+def weightingParticule(self,p_x, p_y, observed_distance):
+        ###################################
+        ##### TODO
+        ##   p_x: x coordinate of the particule p
+        ##  p_y: y coordinate of the particule p
+        ##  observed_distance: distance to the ground
+        ##  measure by the probe
+        ##
+        ## return weight corresponding to the given particule
+        ## according observation
+        ##
+        ## Note ue the function distance_to_obstacle to get the
+        ## estimate particule to the ground distance
+        return ""
+```
 
 2. Select particules according the weights
+```
+def weighted_random_choice(self,choices):
+        ###################################
+        ##### TODO
+        ##   choices: dictionary holding particule coordination as key
+        ##  and weight as value
+        ##  return the selected particule key
+        #####
+        return ""
+```
+
 3. Create new particules
 ```
 def getRandParticule(self,nbr, start_x, max_x, start_y, max_y):
@@ -53,3 +79,25 @@ def getRandParticule(self,nbr, start_x, max_x, start_y, max_y):
 ```
 
 4. Resample particules
+```
+def motion_prediction(self):
+        new_particule_list = []
+        choices = {}
+        for i in range(len(self.particule_list)):
+            choices[self.particule_list[i].id()] = self.particule_list[i].w
+
+            ###################################
+            ##### TODO
+            ##   self.particule_list: list of available particules
+            ##
+            #####
+            ## Use the function self.weighted_random_choice(choices) returning
+            #  coordinate from a particule according a
+            ##  roulette wheel algorithm
+            #  Note that weighted_random_choice return a string containing coodinate x and y of the selected particule
+            #   coord = self.weighted_random_choice(choices)
+            #   x_coord = int(coord.split('_')[0])
+            #   y_coord = int(coord.split('_')[1])
+
+        return new_particule_list
+```
