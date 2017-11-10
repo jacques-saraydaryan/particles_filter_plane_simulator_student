@@ -105,3 +105,8 @@ def motion_prediction(self):
 ## Example of result
 
 [![Alt text](https://img.youtube.com/vi/3IBemFtwZ8g/0.jpg)](https://www.youtube.com/watch?v=3IBemFtwZ8g)
+<div align="center">
+    <iframe width="620" height="315"
+        src="https://www.youtube.com/embed/3IBemFtwZ8g">
+    </iframe>
+</div>
