@@ -74,14 +74,13 @@ class Particule_Filter:
 
             ###################################
             ##### TODO
-            ##   self.particule_list: list des particules disponibles
+            ##   self.particule_list: list of available particules
             ##
             #####
-            ## Utiliser la fonction self.weighted_random_choice(choices) return
+            ## Use the function self.weighted_random_choice(choices) returning
             #  coordinate from a particule according a
             ##  roulette wheel algorithm
-            #  Note weighted_random_choice retourne une string contenant
-            #  le x et y de la particule choisie
+            #  Note that weighted_random_choice return a string containing coodinate x and y of the selected particule
             #   coord = self.weighted_random_choice(choices)
             #   x_coord = int(coord.split('_')[0])
             #   y_coord = int(coord.split('_')[1])
