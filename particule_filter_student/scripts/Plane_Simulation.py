@@ -16,7 +16,7 @@ import math
 import numpy as np
 from common.Particule import Particule
 from Particule_Filter import Particule_Filter
-from common.ToolBox import distance_to_obstacle,distance_to_obstacle_coord,entropy,std
+from common.ToolBox import distance_to_obstacle,distance_to_obstacle_coord,std
 
 
 
