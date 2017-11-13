@@ -31,7 +31,7 @@ cd scripts
 Update the file Particule_Filter.py to:
 
 1. Weight the particules
-```
+```python
 def weightingParticule(self,p_x, p_y, observed_distance):
         ###################################
         ##### TODO
@@ -49,7 +49,7 @@ def weightingParticule(self,p_x, p_y, observed_distance):
 ```
 
 2. Select particules according the weights
-```
+```python
 def weighted_random_choice(self,choices):
         ###################################
         ##### TODO
@@ -61,7 +61,7 @@ def weighted_random_choice(self,choices):
 ```
 
 3. Create new particules
-```
+```python
 def getRandParticule(self,nbr, start_x, max_x, start_y, max_y):
         particule_list = []
         ###################################
@@ -79,7 +79,7 @@ def getRandParticule(self,nbr, start_x, max_x, start_y, max_y):
 ```
 
 4. Resample particules
-```
+```python
 def motion_prediction(self):
         new_particule_list = []
         choices = {}
