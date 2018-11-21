@@ -104,5 +104,5 @@ def motion_prediction(self):
 
 ## Example of result (video)
 
-[![Alt text](https://img.youtube.com/vi/3IBemFtwZ8g/0.jpg)](https://www.youtube.com/watch?v=3IBemFtwZ8g)
+[![Particules Behavior](img/particules.gif)](https://www.youtube.com/watch?v=3IBemFtwZ8g)
 
