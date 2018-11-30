@@ -25,6 +25,9 @@ cd scripts
 * **- key**: Slow down the plane
 
 
+## Program Behavior
+![Program Behavior](./img/soft.jpg "Program Behavior")
+
 
 
 ## The job to do
