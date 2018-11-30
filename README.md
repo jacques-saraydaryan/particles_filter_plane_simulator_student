@@ -26,7 +26,7 @@ cd scripts
 
 
 ## Program Behavior
-![Program Behavior](./img/soft.jpg | Height=60 "Program Behavior" )
+![Program Behavior](./img/soft.jpg  "Program Behavior" )
 
 
 
