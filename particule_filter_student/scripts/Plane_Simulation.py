@@ -76,8 +76,7 @@ class PlaneSimulation:
         myfont = pygame.font.SysFont("monospace", 15)
 
         # load image
-        # player_image = pygame.image.load("./img/player.png").convert()
-        player_image_not_scaled = pygame.image.load("./img/plane_nptrans.png").convert()
+        player_image_not_scaled = pygame.image.load(os.path.dirname(__file__) + "/img/plane_nptrans.png").convert()
         player_image = pygame.transform.scale(player_image_not_scaled, (self.width / 10, self.height / 10))
 
         clock = pygame.time.Clock()

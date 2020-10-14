@@ -105,15 +105,13 @@ class Particule_Filter:
     def weightingParticule_list(self,observed_distance):
         sum_weights = 0
         for i in range(len(self.particule_list)):
-            current_weight = self.weightingParticule(self.particule_list[i].x, self.particule_list[i].y, observed_distance)
-            # current_weight = self.weightingParticuleBinary(self.particule_list[i].x, self.FIXED_PLANE_Y+50,
-            #                                          observed_distance)
-            # current_weight = self.weightingParticuleExp(self.particule_list[i].x, self.FIXED_PLANE_Y+50,
-            #                                         observed_distance)
+            #Compute individual particule weight
+            current_weight = self.weightingParticule(self.particule_list[i].x,  self.FIXED_PLANE_Y+50, observed_distance)
             self.particule_list[i].w = current_weight
             sum_weights += current_weight
         for i in range(len(self.particule_list)):
             if sum_weights != 0:
+                #compute proba sucha as weight is normalized
                 self.particule_list[i].proba = self.particule_list[i].w / float(sum_weights)
             else:
                 self.particule_list[i].proba = 0
