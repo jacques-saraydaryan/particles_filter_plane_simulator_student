@@ -1,7 +1,7 @@
-# Plane simulator for particule filter explanation
+# Plane simulator for particle filter explanation
 
 ## Description
-Base of program allowing to create particules to localise the plane
+Base of program allowing to create particles to localise the plane
 
 ![Plane Simulator](https://github.com/jacques-saraydaryan/particules_filter_plane_simulator_student/blob/master/img/PlaneSimulator-v2.png "Application of particule filter for localising plane position")
 
@@ -42,7 +42,7 @@ cd scripts
 * **Left click**: Add an obstacle to the environment
 * **Right click**: Remove an obstacle to the environment
 * **S key**: Save the current environment (obstacles) into '\tmp\obstacles.npy'
-* **R key**: Reset Plane position and particules filter
+* **R key**: Reset Plane position and particles filter
 * **+ key**: Speed up the plane
 * **- key**: Slow down the plane
 
