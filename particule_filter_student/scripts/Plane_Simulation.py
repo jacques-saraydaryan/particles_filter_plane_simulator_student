@@ -1,12 +1,6 @@
 #!/usr/bin/env python
 # license removed for brevity
 
-from random import WichmannHill
-from zope.interface.common.interfaces import INameError
-
-#from samba.dcerpc.smb_acl import group
-#from samba.dcerpc.winbind import winbind
-
 __author__ = 'jacques saraydaryan'
 
 import pygame
@@ -56,7 +50,7 @@ class PlaneSimulation:
     def __init__(self):
         grid_temp = self.load_obs_matrix("/tmp/", "obstacle.npy")
         if len(grid_temp) == 0:
-            self.obs_grid = [[0 for x in range(self.width / self.SCALE)] for y in range(self.height / self.SCALE)]
+            self.obs_grid = [[0 for x in range(int(self.width / self.SCALE))] for y in range(int(self.height / self.SCALE))]
         else:
             self.obs_grid = grid_temp
         self.particuleFilter=Particule_Filter(self.width,self.height,self.obs_grid)
@@ -77,7 +71,7 @@ class PlaneSimulation:
 
         # load image
         player_image_not_scaled = pygame.image.load(os.path.dirname(__file__) + "/img/plane_nptrans.png").convert()
-        player_image = pygame.transform.scale(player_image_not_scaled, (self.width / 10, self.height / 10))
+        player_image = pygame.transform.scale(player_image_not_scaled, (int(self.width / 10), int(self.height / 10)))
 
         clock = pygame.time.Clock()
         clicked_zone = []
@@ -97,12 +91,12 @@ class PlaneSimulation:
                 # get event
                 if event.type == pygame.QUIT:
                     done = True
-                    print 'end'
+                    print('end')
                 # User pressed down on a key
                 elif event.type == pygame.KEYDOWN:
-                    print "down"
+                    print('down')
                     if event.key == pygame.K_s:
-                        print 'key s pressed'
+                        print('key s pressed')
                         self.save_obs_matrix("/tmp/", "obstacle.npy", self.obs_grid )
                     elif event.key == pygame.K_SPACE:
                         if is_in_pause:
@@ -136,7 +130,7 @@ class PlaneSimulation:
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     isButtonPressed = True
                     current_click = event.button
-                    print 'click type' + str(event.button)
+                    print('click type' + str(event.button))
 
                 if isButtonPressed:
                     clicked_pos = pygame.mouse.get_pos()
@@ -146,7 +140,7 @@ class PlaneSimulation:
                         if current_click == self.LEFT_CLICK:
                             self.obs_grid[int(round(clicked_pos[1] / self.SCALE))][
                                 int(round(clicked_pos[0] / self.SCALE))] = 100
-                            print 'obs--:' + str(clicked_pos[1]) + ',' + str(clicked_pos[0])
+                            print('obs--:' + str(clicked_pos[1]) + ',' + str(clicked_pos[0]))
                         elif current_click == self.RIGHT_CLICK:
                             self.obs_grid[int(round(clicked_pos[1] / self.SCALE))][
                                 int(round(clicked_pos[0] / self.SCALE))] = 0

@@ -5,14 +5,36 @@ Base of program allowing to create particules to localise the plane
 
 ![Plane Simulator](https://github.com/jacques-saraydaryan/particules_filter_plane_simulator_student/blob/master/img/PlaneSimulator-v2.png "Application of particule filter for localising plane position")
 
+## Requirement
+### Create Virtual Env (python3)
+- Create a virtual env at the repository root
+```
+python -m venv venv
+```
+
+- Swtich to virtual env
+
+```
+source ./venv/bin/activate      
+```
+- To go back to host env simply execute command below:
+```
+deactivate
+```
+
+### Install requirments
+- When venv is created and activate, install python dependencies:
+
+```
+pip install -r requirements.txt
+```
 
 ## How to start
-
+- Start the simulation
 ```
 chmod +x ./scripts/Plane_Simulation.py
 cd scripts
 ./Plane_Simulation.py
-
 ```
 
 ## Simulator command
