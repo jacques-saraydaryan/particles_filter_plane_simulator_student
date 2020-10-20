@@ -15,26 +15,30 @@ def distance_to_obstacle_coord(x,y,grid,width,height,scale):
 
 
 def distance_to_obstacle_compute(x,y,grid,width,height,scale):
-    distance=0
-    cell_x=0
-    cell_y=0
+    try:
+        distance=0
+        cell_x=0
+        cell_y=0
 
-    if width / scale > x / scale and height / scale > y / scale:
-        x_to_grid =int(round(x / scale))
-        y_to_grid = int(round(y / scale))
-    else:
-        # FIXME in case of outboung value
-        return 10000
-    targeted_y =y_to_grid
-    while targeted_y < height / scale :
-        if grid[targeted_y][x_to_grid]== 100:
-            break
-        distance+=1
-        targeted_y+=1
-        cell_x=x_to_grid*scale
-        cell_y=targeted_y*scale
-    # print "---> "+str(distance)
-    return distance,cell_x,cell_y
+        if int(round(width / scale)) > int(round(x / scale)) and int(round(height / scale)) > int(round(y / scale)):
+            x_to_grid =int(round(x / scale))
+            y_to_grid = int(round(y / scale))
+        else:
+            # FIXME in case of outboung value
+            return 10000
+        targeted_y =y_to_grid
+        while targeted_y < int(height / scale) :
+            if grid[targeted_y][x_to_grid]== 100:
+                break
+            distance+=1
+            targeted_y+=1
+            cell_x=x_to_grid*scale
+            cell_y=targeted_y*scale
+        # print "---> "+str(distance)
+        return distance,cell_x,cell_y
+    except IndexError:
+        print("error during distance evaluation")
+
 
 
 

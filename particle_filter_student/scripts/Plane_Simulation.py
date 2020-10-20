@@ -50,10 +50,10 @@ class PlaneSimulation:
     def __init__(self):
         grid_temp = self.load_obs_matrix("/tmp/", "obstacle.npy")
         if len(grid_temp) == 0:
-            self.obs_grid = [[0 for x in range(int(self.width / self.SCALE))] for y in range(int(self.height / self.SCALE))]
+            self.obs_grid = [[0 for x in range(int(round(self.width / self.SCALE)))] for y in range(int(round(self.height / self.SCALE)))]
         else:
             self.obs_grid = grid_temp
-        self.particleFilter=Particle_Filter(self.width, self.height, self.obs_grid)
+        self.particleFilter = Particle_Filter(self.width, self.height, self.obs_grid)
 
     # --------------------------------------------------------------------------------------------
     # ---------------------------------------- PYGAME LOOP ---------------------------------------
@@ -71,7 +71,7 @@ class PlaneSimulation:
 
         # load image
         player_image_not_scaled = pygame.image.load(os.path.dirname(__file__) + "/img/plane_nptrans.png").convert()
-        player_image = pygame.transform.scale(player_image_not_scaled, (int(self.width / 10), int(self.height / 10)))
+        player_image = pygame.transform.scale(player_image_not_scaled, (int(round(self.width / 10)), int(round(self.height / 10))))
 
         clock = pygame.time.Clock()
         clicked_zone = []
@@ -135,8 +135,8 @@ class PlaneSimulation:
                 if isButtonPressed:
                     clicked_pos = pygame.mouse.get_pos()
 
-                    if self.width / self.SCALE > clicked_pos[0] / self.SCALE and self.height / self.SCALE > clicked_pos[
-                        1] / self.SCALE:
+                    if int(round(self.width / self.SCALE)) > int(round(clicked_pos[0] / self.SCALE)) and int(round(self.height / self.SCALE)) > int(round(clicked_pos[
+                        1] / self.SCALE)):
                         if current_click == self.LEFT_CLICK:
                             self.obs_grid[int(round(clicked_pos[1] / self.SCALE))][
                                 int(round(clicked_pos[0] / self.SCALE))] = 100
