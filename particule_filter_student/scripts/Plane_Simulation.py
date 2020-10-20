@@ -8,8 +8,8 @@ import random
 import os
 import math
 import numpy as np
-from common.Particule import Particule
-from Particule_Filter import Particule_Filter
+from common.Particle import Particle
+from Particle_Filter import Particle_Filter
 from common.ToolBox import distance_to_obstacle,distance_to_obstacle_coord,std
 
 
@@ -38,7 +38,7 @@ class PlaneSimulation:
     # SCALE=1
     SCALE = 10
 
-    particuleFilter=""
+    particleFilter= ""
     obs_grid=""
     entropy_min=500
     entropy_max=0
@@ -53,7 +53,7 @@ class PlaneSimulation:
             self.obs_grid = [[0 for x in range(int(self.width / self.SCALE))] for y in range(int(self.height / self.SCALE))]
         else:
             self.obs_grid = grid_temp
-        self.particuleFilter=Particule_Filter(self.width,self.height,self.obs_grid)
+        self.particleFilter=Particle_Filter(self.width, self.height, self.obs_grid)
 
     # --------------------------------------------------------------------------------------------
     # ---------------------------------------- PYGAME LOOP ---------------------------------------
@@ -63,7 +63,7 @@ class PlaneSimulation:
         pygame.init()
 
         screen = pygame.display.set_mode(self.SIZE)
-        pygame.display.set_caption("Particule fiter")
+        pygame.display.set_caption("Particle fiter")
 
 
         # initialize font; must be called after 'pygame.init()' to avoid 'Font not Initialized' error
@@ -78,7 +78,7 @@ class PlaneSimulation:
         obstacles_list=[]
 
 
-        plane_pose = {'x': 0, 'y': Particule_Filter.FIXED_PLANE_Y + 50}
+        plane_pose = {'x': 0, 'y': Particle_Filter.FIXED_PLANE_Y + 50}
 
         # Loop until the user clicks the close button.
         done = False
@@ -105,7 +105,7 @@ class PlaneSimulation:
                             is_in_pause = True
                     elif event.key == pygame.K_r:
                         plane_pose['x'] = 0
-                        self.particuleFilter.resetParticule()
+                        self.particleFilter.resetParticle()
                         self.entropy_min=500
                         self.entropy_max=0
                         self.entropylist=[]
@@ -113,10 +113,10 @@ class PlaneSimulation:
                         self.std_min=500
                         self.std_max=0
                     elif event.key == pygame.K_KP_PLUS:
-                        self.particuleFilter.increment += 1
+                        self.particleFilter.increment += 1
                     elif event.key == pygame.K_KP_MINUS:
-                        if self.particuleFilter.increment > -1:
-                            self.particuleFilter.increment -= 1
+                        if self.particleFilter.increment > -1:
+                            self.particleFilter.increment -= 1
 
 
                 # handle MOUSEBUTTONUP
@@ -193,38 +193,25 @@ class PlaneSimulation:
                     # screen.blit(label, (x, y))
                     # screen.blit(clicklab, (clicked_zone[i][0], clicked_zone[i][1]))
 
-                # Process each particule in the list
-                for i in range(len(self.particuleFilter.particule_list)):
-                    # FIXME remove *10 if particule point not in grid
-                    # pygame.draw.circle(screen, self.GREEN_light, [self.particuleFilter.particule_list[i].x*10, self.particuleFilter.particule_list[i].y*10],
-                    #                    int(round(100 * self.particuleFilter.particule_list[i].proba * len(self.particuleFilter.particule_list) / 2)))
-                    pygame.draw.circle(screen, self.GREEN_light, [self.particuleFilter.particule_list[i].x,
-                                                              self.particuleFilter.particule_list[i].y],
-                                   int(round(100 * self.particuleFilter.particule_list[i].proba * len(
-                                       self.particuleFilter.particule_list) / 10)))
+                # Process each particle in the list
+                for i in range(len(self.particleFilter.particle_list)):
+                    # FIXME remove *10 if particle point not in grid
+                    # pygame.draw.circle(screen, self.GREEN_light, [self.particleFilter.particle_list[i].x*10, self.particleFilter.particle_list[i].y*10],
+                    #                    int(round(100 * self.particleFilter.particle_list[i].proba * len(self.particleFilter.particle_list) / 2)))
+                    pygame.draw.circle(screen, self.GREEN_light, [self.particleFilter.particle_list[i].x,
+                                                                  self.particleFilter.particle_list[i].y],
+                                       int(round(100 * self.particleFilter.particle_list[i].proba * len(
+                                       self.particleFilter.particle_list) / 10)))
 
                 # ----------------------------------------------------------------------------------------------------------------
-                # ----------------------------------------- COMPUTED PARTICULE FILTER ---------------------------------------------
+                # ----------------------------------------- COMPUTED PARTICLE FILTER ---------------------------------------------
                 # ----------------------------------------------------------------------------------------------------------------
 
-                self.particuleFilter.updateParticule(plane_pose)
+                self.particleFilter.updateParticle(plane_pose)
 
-                plane_pose['x'] = plane_pose['x'] + 1 + self.particuleFilter.increment
-                
+                plane_pose['x'] = plane_pose['x'] + 1 + self.particleFilter.increment
 
-                #entropy_value=entropy(self.particuleFilter.particule_list)
-                #self.entropylist.append(entropy_value)
-                #if self.entropy_min > entropy_value:
-                #    self.entropy_min=entropy_value
-                #if self.entropy_max < entropy_value:
-                #    self.entropy_max=entropy_value
-                # Display entropy history
-                #entropy_cum=0
-                #for i in range (0, len(self.entropylist)):
-                #    entropy_cum=self.entropylist[i]+entropy_cum
-                #    pygame.draw.circle(screen, self.GREY_light, (i,int(round((self.entropylist[i]-1)*20))), 2)
-
-                std_value=std(self.particuleFilter.particule_list)
+                std_value=std(self.particleFilter.particle_list)
                 self.stdlist.append(std_value)
                 if self.std_min > std_value:
                     self.std_min=std_value
@@ -239,9 +226,6 @@ class PlaneSimulation:
                     pygame.draw.circle(screen, self.GREY_light, (i,int(round((self.stdlist[i]-1)*10))+25), 2)
 
                 #Display line min max avg
-                #pygame.draw.line(screen, self.GREEN_GREEN, (0,int(round((self.entropy_min-1)*20))) ,(self.width,int(round((self.entropy_min-1)*20))), 1)
-                #pygame.draw.line(screen, self.RED, (0,int(round((self.entropy_max-1)*20))) ,(self.width,int(round((self.entropy_max-1)*20))), 1)
-                #pygame.draw.line(screen, self.BLUE, (0,int(round((entropy_cum/len(self.entropylist)-1)*20))) ,(self.width,int(round((entropy_cum/len(self.entropylist)-1)*20))), 1)
                 pygame.draw.line(screen, self.GREEN_GREEN, (0,int(round((self.std_min-1)*10))+25) ,(self.width,int(round((self.std_min-1)*10))+25), 1)
                 pygame.draw.line(screen, self.RED, (0,int(round((self.std_max-1)*10))+25) ,(self.width,int(round((self.std_max-1)*10))+25), 1)
                 pygame.draw.line(screen, self.BLUE, (0,int(round((std_cum/len(self.stdlist)-1)*10))+25) ,(self.width,int(round((std_cum/len(self.stdlist)-1)*10))+25), 1)
@@ -316,7 +300,7 @@ class PlaneSimulation:
 
 # COMMAND TYPE
 # S key save the current obstacle map to /tmp/obstacle.npy
-# R key reset the plane position and particule filter
+# R key reset the plane position and particle filter
 # + increase plane speed
 # - decrease plane speed
 # SPACE pause/resume

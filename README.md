@@ -53,78 +53,80 @@ cd scripts
 
 
 ## The job to do
-Update the file Particule_Filter.py to:
+Update the file Particle_Filter.py to:
 
-1. Weight the particules
+1. Create first particles set
 ```python
-def weightingParticule(self,p_x, p_y, observed_distance):
+def getRandParticle(self,nbr, start_x, max_x, start_y, max_y):
+        particle_list = []
         ###################################
         ##### TODO
-        ##   p_x: x coordinate of the particule p
-        ##  p_y: y coordinate of the particule p
-        ##  observed_distance: distance to the ground
-        ##  measure by the probe
-        ##
-        ## return weight corresponding to the given particule
-        ## according observation
-        ##
-        ## Note ue the function distance_to_obstacle to get the
-        ## estimate particule to the ground distance
-        return ""
-```
-
-2. Select particules according the weights
-```python
-def weighted_random_choice(self,choices):
-        ###################################
-        ##### TODO
-        ##   choices: dictionary holding particule coordination as key
-        ##  and weight as value
-        ##  return the selected particule key
-        #####
-        return ""
-```
-
-3. Create new particules
-```python
-def getRandParticule(self,nbr, start_x, max_x, start_y, max_y):
-        particule_list = []
-        ###################################
-        ##### TODO
-        ##   nbr: number fo particules
+        ##   nbr: number fo particles
         ##   start_x: min x possible coordinate
         ##   max_x: max x possible coordinate
         ##   start_y: min y possible coordinate
         ##   max_y: max y possible coordinate
         #####
-        ## Use the Particule object to fill the list particule_list
+        ## Use the Particle object to fill the list particle_list
         ##
 
-        return particule_list
+        return particle_list
 ```
 
-4. Resample particules
+2. Weight the particles
+```python
+def weightingParticle(self,p_x, p_y, observed_distance):
+        ###################################
+        ##### TODO
+        ##   p_x: x coordinate of the particle p
+        ##  p_y: y coordinate of the particle p
+        ##  observed_distance: distance to the ground
+        ##  measure by the probe
+        ##
+        ## return weight corresponding to the given particle
+        ## according observation
+        ##
+        ## Note ue the function distance_to_obstacle to get the
+        ## estimate particle to the ground distance
+        return ""
+```
+
+3. Select particles according the weights
+```python
+def weighted_random_choice(self,choices):
+        ###################################
+        ##### TODO
+        ##   choices: dictionary holding particle coordination as key
+        ##  and weight as value
+        ##  return the selected particle key
+        #####
+        return ""
+```
+
+
+
+4. Resample particles
 ```python
 def motion_prediction(self):
-        new_particule_list = []
+        new_particle_list = []
         choices = {}
-        for i in range(len(self.particule_list)):
-            choices[self.particule_list[i].id()] = self.particule_list[i].w
+        for i in range(len(self.particle_list)):
+            choices[self.particle_list[i].id()] = self.particle_list[i].w
 
             ###################################
             ##### TODO
-            ##   self.particule_list: list of available particules
+            ##   self.particle_list: list of available particles
             ##
             #####
             ## Use the function self.weighted_random_choice(choices) returning
-            #  coordinate from a particule according a
+            #  coordinate from a particle according a
             ##  roulette wheel algorithm
-            #  Note that weighted_random_choice return a string containing coodinate x and y of the selected particule
+            #  Note that weighted_random_choice return a string containing coodinate x and y of the selected particle
             #   coord = self.weighted_random_choice(choices)
             #   x_coord = int(coord.split('_')[0])
             #   y_coord = int(coord.split('_')[1])
 
-        return new_particule_list
+        return new_particle_list
 ```
 
 ## Example of result (video)

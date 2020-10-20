@@ -1,7 +1,7 @@
 # from collections import namedtuple
 # MyStruct = namedtuple("MyStruct", "field1 field2 field3")
 
-class Particule:
+class Particle:
     x = 0
     y = 0
     w = 0
