@@ -53,6 +53,9 @@ cd scripts
 
 
 ## The job to do
+
+### First Particule Filter
+
 Update the file Particle_Filter.py to:
 
 1. Create first particles set
@@ -103,8 +106,6 @@ def weighted_random_choice(self,choices):
         return ""
 ```
 
-
-
 4. Resample particles
 ```python
 def motion_prediction(self):
@@ -129,7 +130,33 @@ def motion_prediction(self):
         return new_particle_list
 ```
 
+### Influence of environement and different parameters
+
+- Generate several test environments (at least 5) and highlight particle filter behaviour of each of them (specify the chosen, weight computation method, motion and observation error model)
+
+- Test different weight computation method (at least 2) on these generated environments (specify the chosen motion and observation error model)
+
+- Test different motion models (at least 2) error on these generated environments (specify the chosen weight computation method and observation error model)
+
+- Test the influence of the observation error model on these generated environments (specify the chosen weight computation method and motion error model)
+
+For each analysis, provide a set of screenshots and your associated comments and conclusion
+
 ## Example of result (video)
 
 [![Particules Behavior](img/particules.gif)](https://www.youtube.com/watch?v=3IBemFtwZ8g)
 
+
+## Advanced Mode
+### Context
+- Improve your particle filter by adding moves capacity to the plane.
+- By clicking on the up arrow and down arrow, the plane goes up or go done
+- Generated particles no more stay on the same y coordinate and need to be generated and move on both x and y coordinates
+### the job to do
+- Modify the plane simulator in order to allow plane move on both x and y axes
+- Modify particle filter to word on theses new conditions
+
+
+<img src="./img/ParticleFilterUpDownv1.png" alt="Variable Edition" width="400"/>
+<img src="./img/ParticleFilterUpDownv2.png" alt="Variable Edition" width="400"/>
+<img src="./img/ParticleFilterUpDownv3.png" alt="Variable Edition" width="400"/>
