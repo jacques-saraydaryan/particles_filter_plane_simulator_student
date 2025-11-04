@@ -52,11 +52,11 @@ class Particle_Filter:
         return particle_list
 
         # ----------------------------------------------------------------------------------------------------------------
-        # ----------------------------------- UPDATE PARTICLE ACCORDING NEX POSE-----------------------------------------
+        # ----------------------------------- UPDATE PARTICLE ACCORDING NEXT POSE-----------------------------------------
         # ----------------------------------------------------------------------------------------------------------------
-    def updateParticle(self,plane_pose):
+    def updateParticle(self,plane_pose, command_x, command_y):
         # process particle according motion planning
-        self.particle_list = self.motion_prediction()
+        self.particle_list = self.motion_prediction(command_x, command_y)
 
         current_distance_to_obstacle = distance_to_obstacle(plane_pose['x'], plane_pose['y'], self.obs_grid,self.width,self.height,self.SCALE_FACTOR)
 
@@ -66,7 +66,7 @@ class Particle_Filter:
         # ----------------------------------------------------------------------------------------------------------------
         # -------------------------------------- MOTION PREDICTION AND RESAMPLING   --------------------------------------
         # ----------------------------------------------------------------------------------------------------------------
-    def motion_prediction(self):
+    def motion_prediction(self, command_x, command_y):
         new_particle_list = []
         choices = {}
         for i in range(len(self.particle_list)):
@@ -75,7 +75,8 @@ class Particle_Filter:
             ###################################
             ##### TODO
             ##   self.particle_list: list of available particles
-            ##
+            ##   command_x = command u(t) on the x axis
+            ##   command_y = command u(t) on the y axis
             #####
             ## Use the function self.weighted_random_choice(choices) returning
             #  coordinate from a particle according a

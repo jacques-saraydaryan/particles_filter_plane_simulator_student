@@ -45,10 +45,13 @@ cd scripts
 * **R key**: Reset Plane position and particles filter
 * **+ key**: Speed up the plane
 * **- key**: Slow down the plane
+* **Up key** move the plane up
+* **Down key** move the plane down
+* **Right key** when pause activated step by step
 
 
 ## Program Behavior
-![Program Behavior](./img/soft.jpg  "Program Behavior" )
+![Program Behavior](./img/soft.svg  "Program Behavior" )
 
 
 
@@ -108,7 +111,7 @@ def weighted_random_choice(self,choices):
 
 4. Resample particles
 ```python
-def motion_prediction(self):
+def motion_prediction(self,command_x, command_y):
         new_particle_list = []
         choices = {}
         for i in range(len(self.particle_list)):
@@ -117,6 +120,8 @@ def motion_prediction(self):
             ###################################
             ##### TODO
             ##   self.particle_list: list of available particles
+            ##   command_x = command u(t) on the x axis
+            ##   command_y = command u(t) on the y axis
             ##
             #####
             ## Use the function self.weighted_random_choice(choices) returning
@@ -130,7 +135,7 @@ def motion_prediction(self):
         return new_particle_list
 ```
 
-### Influence of environement and different parameters
+### Influence of the environments and the different parameters
 
 - Generate several test environments (at least 5) and highlight particle filter behaviour of each of them (specify the chosen, weight computation method, motion and observation error model)
 
